@@ -80,8 +80,8 @@ const Navigation = ({
         </div>
 
         {/* כפתורי ניווט */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4 space-x-reverse">
+        <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
+          <div className="flex items-center justify-center space-x-4 space-x-reverse">
             <button
               onClick={onPrev}
               disabled={currentQuestionIndex === 0}
@@ -101,12 +101,12 @@ const Navigation = ({
             </button>
           </div>
 
-          <div className="flex items-center space-x-6 space-x-reverse">
+          <div className="flex flex-col space-y-3 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-6 lg:space-x-reverse">
             {/* סטטיסטיקות */}
             <div className="bg-gradient-to-r from-blue-50 to-accent/10 rounded-lg p-3 border border-blue-200 shadow-sm">
-              <div className="flex items-center space-x-2 space-x-reverse">
+              <div className="flex items-center justify-center space-x-2 space-x-reverse">
                 <Clock className="h-4 w-4 text-primary" />
-                <div className="text-xs">
+                <div className="text-xs text-center">
                   <span className="font-bold text-primary">{answeredQuestions}</span> מתוך <span className="font-bold text-gray-900">{totalQuestions}</span> שאלות נענו
                 </div>
               </div>
@@ -115,7 +115,7 @@ const Navigation = ({
             {/* כפתור סיום מבחן */}
             <button
               onClick={handleCompleteExam}
-              className="btn-error flex items-center space-x-2 space-x-reverse px-6 py-2 text-sm font-semibold"
+              className="btn-error flex items-center justify-center space-x-2 space-x-reverse px-6 py-2 text-sm font-semibold w-full lg:w-auto"
             >
               <Flag className="h-4 w-4" />
               <span>סיים מבחן</span>
