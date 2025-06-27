@@ -1,3 +1,45 @@
+# מערכת מבחן טכני מקצועית - Full Stack
+
+## 🚀 הוראות התקנה והרצה
+
+1. התקנת תלויות:
+```bash
+npm install
+```
+2. הרצת שרת פיתוח:
+```bash
+npm start
+```
+3. בנייה לפרודקשן:
+```bash
+npm run build
+```
+
+### הגדרת Tailwind CSS
+- כל קבצי העיצוב נמצאים ב-`src/index.css`.
+- ניתן להוסיף עיצובים מותאמים אישית לפי הצורך.
+
+### משתני סביבה
+- אין צורך בהגדרות מיוחדות כברירת מחדל.
+
+### פתרון בעיות נפוצות
+- אם Tailwind לא עובד, ודאו שהגדרות `tailwind.config.js` נכונות.
+- במידה ויש שגיאות npm, נסו להריץ:
+```bash
+npm audit fix --force
+```
+
+### ספריות עיקריות
+- React 18+
+- Tailwind CSS
+- React Router
+- PapaParse (ייצוא CSV)
+- Lucide React (אייקונים)
+
+---
+
+לשאלות נוספות, פנו למפתח המערכת.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

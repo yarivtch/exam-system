@@ -1,0 +1,162 @@
+{
+  "frontend": {
+    "title": "פרונט-אנד (React/JavaScript)",
+    "questions": [
+      {
+        "id": "fe1",
+        "question": "מה ההבדל בין useState ל-useEffect ב-React? מתי תשתמש בכל אחד?",
+        "type": "multiple",
+        "options": [
+          "useState לניהול state מקומי, useEffect ל-side effects כמו API calls",
+          "useState לרנדור, useEffect למצב",
+          "useState לאירועים, useEffect לנתונים",
+          "אין הבדל משמעותי"
+        ],
+        "correct": 0,
+        "difficulty": "easy"
+      },
+      {
+        "id": "fe2",
+        "question": "איך תכתוב async function בתוך useEffect?",
+        "type": "multiple",
+        "options": [
+          "useEffect(async () => {...})",
+          "useEffect(() => { async function fetchData() {...} })",
+          "useEffect(() => Promise.resolve(...))",
+          "useAsync(() => {...})"
+        ],
+        "correct": 1,
+        "difficulty": "easy"
+      },
+      {
+        "id": "fe3",
+        "question": "יש לך state משותף בין 3 קומפוננטות ברמות שונות בעץ. איך תטפל בזה?",
+        "type": "multiple",
+        "options": [
+          "props drilling",
+          "Context API",
+          "Redux",
+          "תלוי במורכבות"
+        ],
+        "correct": 3,
+        "difficulty": "medium"
+      },
+      {
+        "id": "fe4",
+        "question": "איך תמנע רנדור מיותר של קומפוננטה שמקבלת props שלא השתנו?",
+        "type": "multiple",
+        "options": [
+          "shouldComponentUpdate",
+          "React.memo",
+          "useMemo",
+          "B או C"
+        ],
+        "correct": 3,
+        "difficulty": "medium"
+      },
+      {
+        "id": "fe5",
+        "question": "תכתוב custom hook שמנהל API call עם loading, error ו-retry logic.",
+        "type": "text",
+        "placeholder": "function useApiCall(url) {\n  const [data, setData] = useState(null);\n  const [loading, setLoading] = useState(false);\n  const [error, setError] = useState(null);\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    setError(null);\n    try {\n      const response = await fetch(url);\n      const result = await response.json();\n      setData(result);\n    } catch (err) {\n      setError(err);\n    } finally {\n      setLoading(false);\n    }\n  }, [url]);\n\n  useEffect(() => {\n    fetchData();\n  }, [fetchData]);\n\n  return { data, loading, error, retry: fetchData };\n}",
+        "difficulty": "hard",
+        "hasCode": true
+      }
+    ]
+  },
+  "backend": {
+    "title": "Backend Development (.NET Core)",
+    "questions": [
+      {
+        "id": "be1",
+        "question": "איזה HTTP Method מתאים ליצירת משאב חדש ב-REST API?",
+        "type": "multiple",
+        "options": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"
+        ],
+        "correct": 1,
+        "difficulty": "easy"
+      },
+      {
+        "id": "be2",
+        "question": "מה יקרה אם נשכח await לפני קריאה אסינכרונית?",
+        "type": "multiple",
+        "options": [
+          "הקוד יחכה בכל מקרה",
+          "הקוד ימשיך מבלי לחכות",
+          "יזרוק שגיאה",
+          "יחכה רק אם נוסיף .Result"
+        ],
+        "correct": 1,
+        "difficulty": "medium"
+      },
+      {
+        "id": "be3",
+        "question": "מה ההבדל בין throw ל-throw ex ב-C#?",
+        "type": "multiple",
+        "options": [
+          "אין הבדל",
+          "throw שומר על call stack, throw ex לא",
+          "throw ex שומר על call stack, throw לא",
+          "throw ex יותר מהיר"
+        ],
+        "correct": 1,
+        "difficulty": "hard"
+      }
+    ]
+  },
+  "sql": {
+    "title": "SQL Development",
+    "questions": [
+      {
+        "id": "sql1",
+        "question": "מה יחזיר INNER JOIN לעומת LEFT JOIN?",
+        "type": "multiple",
+        "options": [
+          "INNER JOIN מחזיר יותר שורות",
+          "LEFT JOIN מחזיר יותר שורות (או שווה)",
+          "אין הבדל",
+          "תלוי בנתונים"
+        ],
+        "correct": 1,
+        "difficulty": "easy"
+      },
+      {
+        "id": "sql2",
+        "question": "מתי תבחר ליצור View במקום query ישיר לטבלאות? תן דוגמה מעשית ותסביר את השיקולים.",
+        "type": "text",
+        "placeholder": "View מתאים כש:\n• יש logic מורכב שחוזר\n• צריך security layer\n• aggregation שחוזרת\n\nדוגמה:\nCREATE VIEW CustomerSummary AS\nSELECT c.Name, COUNT(o.OrderId) as OrderCount, SUM(o.Total) as TotalSpent\nFROM Customers c LEFT JOIN Orders o ON c.Id = o.CustomerId\nGROUP BY c.Id, c.Name\n\nשיקולים:\n• Performance (יכול להיות איטי)\n• Maintenance (שינוי בטבלה משפיע)\n• Security (הסתרת עמודות)",
+        "difficulty": "hard",
+        "hasCode": true
+      }
+    ]
+  },
+  "architecture": {
+    "title": "ארכיטקטורה ועיצוב מערכות",
+    "questions": [
+      {
+        "id": "arch1",
+        "question": "מערכת דוחות תאונות דרכים במשטרת ישראל צומחת מ-500 דוחות ליום ל-15,000 דוחות ליום. המערכת הנוכחית (.NET Framework ישן) קורסת בשעות עומס. תכנן אסטרטגיית scaling (350-450 מילים) הכוללת: בעיות קריטיות, ארכיטקטורה מבוזרת, תשתית ונתונים, תכנית יישום.",
+        "type": "text",
+        "placeholder": "תכנן אסטרטגיית scaling מלאה:\n\n1. בעיות קריטיות:\n• צוואר צר בדאטאבייס\n• חוסר יכולת load balancing\n• מערכת מונוליטית שלא מתרחבת\n\n2. ארכיטקטורה מבוזרת:\n• פירוק למיקרו-שירותים (Reports, Users, Analytics)\n• API Gateway לניהול בקשות\n• Message Queue לעיבוד אסינכרוני\n\n3. תשתית ונתונים:\n• Database sharding לפי אזורים\n• Redis caching לנתונים נפוצים\n• Kafka לזרמי נתונים בזמן אמת\n\n4. תכנית יישום (6 חודשים):\n• חודש 1-2: הכנת תשתית cloud\n• חודש 3-4: פיתוח microservices\n• חודש 5-6: migration הדרגתי",
+        "difficulty": "hard"
+      }
+    ]
+  },
+  "devtools": {
+    "title": "Chrome Developer Tools",
+    "questions": [
+      {
+        "id": "dt1",
+        "question": "האפליקציה שלך 'תוקעת' לכמה שניות כשעושים scroll. איך תמצא את הבעיה? תן אסטרטגיה של 4-5 צעדים.",
+        "type": "text",
+        "placeholder": "אסטרטגיה לזיהוי בעיית scroll:\n\n1. Performance panel:\n• רשום session בזמן scroll\n• חפש long tasks (אדום) במרכז המסך\n\n2. Main thread analysis:\n• זהה functions שצורכים הכי הרבה זמן\n• חפש layout thrashing\n\n3. Call tree/Flame chart:\n• מצא את הפונקציות הבעייתיות\n• בדוק האם יש חישובים כבדים בזמן scroll\n\n4. Rendering tab:\n• הפעל Paint flashing\n• זהה repaints מיותרים\n\n5. Coverage tab:\n• בדוק CSS/JS שלא בשימוש\n• הסר קוד מיותר שעלול להשפיע",
+        "difficulty": "hard",
+        "hasCode": true
+      }
+    ]
+  }
+}
