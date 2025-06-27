@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, CheckCircle, Circle, Flag, AlertTriangle } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle, Circle, Flag, AlertTriangle, Map, Clock } from 'lucide-react';
 
 const Navigation = ({ 
   currentQuestionIndex, 
@@ -34,43 +34,46 @@ const Navigation = ({
       <button
         key={index}
         onClick={() => onGoToQuestion(index)}
-        className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200 ${
+        className={`w-12 h-12 rounded-xl flex items-center justify-center text-sm font-semibold transition-all duration-300 card-hover ${
           isCurrent
-            ? 'bg-primary text-white shadow-lg'
+            ? 'bg-gradient-to-br from-primary to-secondary text-white shadow-xl scale-110'
             : isAnswered
-            ? 'bg-success text-white'
-            : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+            ? 'bg-gradient-to-br from-success to-green-600 text-white shadow-lg'
+            : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:shadow-md'
         }`}
       >
         {isAnswered ? (
-          <CheckCircle className="h-5 w-5" />
+          <CheckCircle className="h-6 w-6" />
         ) : (
-          <span>{index + 1}</span>
+          <span className="text-base">{index + 1}</span>
         )}
       </button>
     );
   };
 
   return (
-    <div className="bg-white shadow-lg border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div className="bg-white shadow-2xl border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 py-6">
         {/* אינדיקטורים לשאלות */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-medium text-gray-700">מפת שאלות</h3>
-            <div className="flex items-center space-x-2 space-x-reverse text-xs text-gray-500">
-              <div className="flex items-center space-x-1 space-x-reverse">
-                <CheckCircle className="h-3 w-3 text-success" />
-                <span>נענה</span>
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-bold text-gray-900 flex items-center">
+              <Map className="h-5 w-5 mr-2 text-primary" />
+              מפת שאלות
+            </h3>
+            <div className="flex items-center space-x-4 space-x-reverse text-sm text-gray-600">
+              <div className="flex items-center space-x-2 space-x-reverse bg-success/10 px-3 py-1 rounded-full">
+                <CheckCircle className="h-4 w-4 text-success" />
+                <span className="font-medium">נענה</span>
               </div>
-              <div className="flex items-center space-x-1 space-x-reverse">
-                <Circle className="h-3 w-3 text-gray-400" />
-                <span>לא נענה</span>
+              <div className="flex items-center space-x-2 space-x-reverse bg-gray-100 px-3 py-1 rounded-full">
+                <Circle className="h-4 w-4 text-gray-400" />
+                <span className="font-medium">לא נענה</span>
               </div>
             </div>
           </div>
           
-          <div className="flex flex-wrap gap-2 justify-center">
+          <div className="flex flex-wrap gap-3 justify-center">
             {Array.from({ length: totalQuestions }, (_, index) => 
               renderQuestionIndicator(index)
             )}
@@ -79,38 +82,43 @@ const Navigation = ({
 
         {/* כפתורי ניווט */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3 space-x-reverse">
+          <div className="flex items-center space-x-4 space-x-reverse">
             <button
               onClick={onPrev}
               disabled={currentQuestionIndex === 0}
-              className="flex items-center space-x-2 space-x-reverse px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="btn-outline flex items-center space-x-2 space-x-reverse px-6 py-3 text-base font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-5 w-5" />
               <span>הקודמת</span>
             </button>
             
             <button
               onClick={onNext}
               disabled={currentQuestionIndex === totalQuestions - 1}
-              className="flex items-center space-x-2 space-x-reverse px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="btn-outline flex items-center space-x-2 space-x-reverse px-6 py-3 text-base font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span>הבאה</span>
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-5 w-5" />
             </button>
           </div>
 
-          <div className="flex items-center space-x-3 space-x-reverse">
+          <div className="flex items-center space-x-6 space-x-reverse">
             {/* סטטיסטיקות */}
-            <div className="text-sm text-gray-600">
-              <span className="font-medium">{answeredQuestions}</span> מתוך <span className="font-medium">{totalQuestions}</span> שאלות נענו
+            <div className="bg-gradient-to-r from-blue-50 to-accent/10 rounded-xl p-4 border border-blue-200">
+              <div className="flex items-center space-x-2 space-x-reverse">
+                <Clock className="h-5 w-5 text-primary" />
+                <div className="text-sm">
+                  <span className="font-bold text-primary">{answeredQuestions}</span> מתוך <span className="font-bold text-gray-900">{totalQuestions}</span> שאלות נענו
+                </div>
+              </div>
             </div>
 
             {/* כפתור סיום מבחן */}
             <button
               onClick={handleCompleteExam}
-              className="flex items-center space-x-2 space-x-reverse px-6 py-2 bg-error text-white rounded-md text-sm font-medium hover:bg-error/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-error transition-colors shadow-lg hover:shadow-xl"
+              className="btn-error flex items-center space-x-2 space-x-reverse px-8 py-3 text-base font-semibold"
             >
-              <Flag className="h-4 w-4" />
+              <Flag className="h-5 w-5" />
               <span>סיים מבחן</span>
             </button>
           </div>
@@ -119,32 +127,34 @@ const Navigation = ({
 
       {/* דיאלוג אישור סיום */}
       {showConfirmComplete && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-            <div className="flex items-center space-x-3 space-x-reverse mb-4">
-              <AlertTriangle className="h-6 w-6 text-warning" />
-              <h3 className="text-lg font-medium text-gray-900">אישור סיום מבחן</h3>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 border border-gray-100">
+            <div className="flex items-center space-x-3 space-x-reverse mb-6">
+              <div className="w-12 h-12 bg-gradient-to-br from-warning to-yellow-600 rounded-xl flex items-center justify-center">
+                <AlertTriangle className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">אישור סיום מבחן</h3>
             </div>
             
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="text-base text-gray-600 mb-6 leading-relaxed">
               האם אתה בטוח שברצונך לסיים את המבחן? 
               {answeredQuestions < totalQuestions && (
-                <span className="block mt-2 text-warning font-medium">
-                  עדיין לא ענית על {totalQuestions - answeredQuestions} שאלות.
+                <span className="block mt-3 text-warning font-semibold bg-warning/10 px-3 py-2 rounded-lg">
+                  ⚠️ עדיין לא ענית על {totalQuestions - answeredQuestions} שאלות.
                 </span>
               )}
             </p>
             
-            <div className="flex items-center justify-end space-x-3 space-x-reverse">
+            <div className="flex items-center justify-end space-x-4 space-x-reverse">
               <button
                 onClick={cancelComplete}
-                className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+                className="btn-ghost px-6 py-3 text-base font-semibold"
               >
                 ביטול
               </button>
               <button
                 onClick={confirmComplete}
-                className="px-4 py-2 bg-error text-white rounded-md text-sm font-medium hover:bg-error/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-error transition-colors"
+                className="btn-error px-6 py-3 text-base font-semibold"
               >
                 סיים מבחן
               </button>
