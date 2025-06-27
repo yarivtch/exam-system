@@ -103,7 +103,7 @@ const ResultsPage = ({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 p-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* כותרת */}
         <div className="text-center mb-12">
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-8">
@@ -117,7 +117,7 @@ const ResultsPage = ({
         </div>
 
         {/* כרטיס ביצועים כללי */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8 mb-8 border border-white/20">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 mb-8 border border-white/20">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
               {getPerformanceIcon(accuracyRate)}
@@ -170,7 +170,7 @@ const ResultsPage = ({
         </div>
 
         {/* פרטי משתמש */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8 mb-8 border border-white/20">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 mb-8 border border-white/20">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mr-3">
               <span className="text-white font-bold">👤</span>
@@ -198,7 +198,7 @@ const ResultsPage = ({
         </div>
 
         {/* תוצאות לפי קטגוריות */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8 mb-8 border border-white/20">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 mb-8 border border-white/20">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
             <div className="w-8 h-8 bg-gradient-to-br from-accent to-primary rounded-lg flex items-center justify-center mr-3">
               <span className="text-white font-bold">📊</span>
@@ -248,7 +248,7 @@ const ResultsPage = ({
         </div>
 
         {/* כפתורי פעולה */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8 border border-white/20">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={onExportResults}

@@ -19,19 +19,19 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
         <button
           key={index}
           onClick={() => handleMultipleChoice(index)}
-          className={`w-full text-right p-6 rounded-xl border-2 transition-all duration-300 hover:shadow-lg card-hover ${
+          className={`w-full text-right p-4 rounded-lg border-2 transition-all duration-300 hover:shadow-lg card-hover ${
             currentAnswer === index
               ? 'border-primary bg-gradient-to-r from-primary/10 to-accent/10 text-primary shadow-lg'
               : 'border-gray-200 hover:border-primary/50 bg-white hover:bg-gray-50'
           }`}
         >
-          <div className="flex items-center space-x-4 space-x-reverse">
+          <div className="flex items-center space-x-3 space-x-reverse">
             {currentAnswer === index ? (
-              <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
+              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
             ) : (
-              <Circle className="h-6 w-6 text-gray-400 flex-shrink-0" />
+              <Circle className="h-5 w-5 text-gray-400 flex-shrink-0" />
             )}
-            <span className="text-base font-medium">{option}</span>
+            <span className="text-sm font-medium">{option}</span>
           </div>
         </button>
       ))}
@@ -39,9 +39,9 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
   );
 
   const renderTextInput = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
-        <label htmlFor="textAnswer" className="block text-base font-semibold text-gray-700 mb-3">
+        <label htmlFor="textAnswer" className="block text-sm font-semibold text-gray-700 mb-2">
           התשובה שלך:
         </label>
         <textarea
@@ -49,7 +49,7 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
           value={textAnswer}
           onChange={(e) => handleTextAnswer(e.target.value)}
           placeholder=""
-          className="w-full h-40 p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary resize-none transition-all duration-300"
+          className="w-full h-32 p-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none transition-all duration-300"
         />
       </div>
     </div>
@@ -82,41 +82,41 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-4xl mx-auto border border-gray-100">
+    <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 w-full max-w-3xl border border-gray-100">
       {/* כותרת השאלה */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-3 space-x-reverse">
-            <span className="text-sm font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-2 space-x-reverse">
+            <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
               {question.categoryTitle}
             </span>
             <span className="text-gray-300">|</span>
-            <span className={`text-sm font-semibold ${getDifficultyColor(question.difficulty)} bg-${question.difficulty === 'easy' ? 'success' : question.difficulty === 'medium' ? 'warning' : 'error'}/10 px-3 py-1 rounded-full`}>
+            <span className={`text-xs font-semibold ${getDifficultyColor(question.difficulty)} bg-${question.difficulty === 'easy' ? 'success' : question.difficulty === 'medium' ? 'warning' : 'error'}/10 px-2 py-1 rounded-full`}>
               {getDifficultyText(question.difficulty)}
             </span>
           </div>
-          <div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+          <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
             {question.type === 'multiple' ? 'בחירה מרובה' : 'שאלה פתוחה'}
           </div>
         </div>
-        <h2 className="text-2xl font-bold text-gray-900 leading-relaxed">
+        <h2 className="text-lg font-bold text-gray-900 leading-relaxed">
           {question.question}
         </h2>
       </div>
 
       {/* תוכן השאלה */}
-      <div className="mb-8">
+      <div className="mb-6">
         {question.type === 'multiple' ? renderMultipleChoice() : renderTextInput()}
       </div>
 
       {/* הודעות עזרה */}
       {question.type === 'text' && (
-        <div className="bg-gradient-to-r from-blue-50 to-accent/10 border border-blue-200 rounded-xl p-6">
-          <div className="flex items-start space-x-3 space-x-reverse">
-            <AlertCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-            <div className="text-base text-primary-dark">
+        <div className="bg-gradient-to-r from-blue-50 to-accent/10 border border-blue-200 rounded-lg p-4 shadow-sm">
+          <div className="flex items-start space-x-2 space-x-reverse">
+            <AlertCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+            <div className="text-sm text-primary-dark">
               <p className="font-semibold mb-2">טיפ קטן:</p>
-              <ul className="list-disc list-inside space-y-2 text-sm">
+              <ul className="list-disc list-inside space-y-1 text-xs">
                 <li>תשובה ברורה, קצרה וממוקדת תמיד מנצחת</li>
                 <li>אם צריך – אפשר להוסיף דוגמת קוד משלך</li>
                 <li>אל תשכח/י להסביר את הלוגיקה שלך</li>
