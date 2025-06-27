@@ -82,22 +82,20 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 p-4">
+    <div className="min-h-screen flex items-center justify-center app-bg p-4">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Award className="h-10 w-10 text-white" />
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 mb-8 shadow-xl border border-blue-100">
+            <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Award className="h-10 w-10 text-primary" />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4">
-              מערכת מבחן טכני
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              מבחן טכני - קבוצת דיגיטל
             </h2>
-            <p className="text-blue-100 text-lg">
-              Full Stack Senior Developer
+            <p className="text-blue-700 text-lg font-semibold">
+              בהצלחה! ענה על השאלות בקצב שלך. אפשר לעצור ולחזור בכל שלב.
             </p>
-            <p className="text-blue-200 mt-2">
-              אנא הכנס את פרטיך כדי להתחיל במבחן
-            </p>
+           
           </div>
         </div>
 

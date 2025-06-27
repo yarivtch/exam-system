@@ -29,23 +29,21 @@ const Navigation = ({
   const renderQuestionIndicator = (index) => {
     const isAnswered = isQuestionAnswered(index);
     const isCurrent = index === currentQuestionIndex;
-    
     return (
       <button
         key={index}
         onClick={() => onGoToQuestion(index)}
-        className={`w-12 h-12 rounded-xl flex items-center justify-center text-sm font-semibold transition-all duration-300 card-hover ${
-          isCurrent
-            ? 'bg-gradient-to-br from-primary to-secondary text-white shadow-xl scale-110'
-            : isAnswered
-            ? 'bg-gradient-to-br from-success to-green-600 text-white shadow-lg'
-            : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:shadow-md'
-        }`}
+        className={`w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold transition-all duration-300 card-hover shadow-md border-2 mx-1 my-1
+          ${isCurrent ? 'bg-primary text-white border-primary scale-110 shadow-xl' :
+            isAnswered ? 'bg-blue-50 text-primary border-primary/60' :
+            'bg-white text-gray-700 border-blue-100 hover:bg-blue-50'}
+        `}
+        style={{ minWidth: 48 }}
       >
         {isAnswered ? (
-          <CheckCircle className="h-6 w-6" />
+          <CheckCircle className="h-6 w-6 text-primary" />
         ) : (
-          <span className="text-base">{index + 1}</span>
+          <span>{index + 1}</span>
         )}
       </button>
     );
@@ -72,11 +70,12 @@ const Navigation = ({
               </div>
             </div>
           </div>
-          
-          <div className="flex flex-wrap gap-3 justify-center">
-            {Array.from({ length: totalQuestions }, (_, index) => 
-              renderQuestionIndicator(index)
-            )}
+          <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-blue-50 rounded-xl py-2" style={{ background: 'linear-gradient(90deg, #e0f2fe 0%, #f7fafc 100%)' }}>
+            <div className="flex flex-nowrap gap-2 justify-center min-w-fit">
+              {Array.from({ length: totalQuestions }, (_, index) => 
+                renderQuestionIndicator(index)
+              )}
+            </div>
           </div>
         </div>
 

@@ -107,10 +107,10 @@ const ResultsPage = ({
         {/* כותרת */}
         <div className="text-center mb-12">
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-8">
-            <h1 className="text-5xl font-bold text-white mb-4">
+            <h1 className="text-5xl font-bold text-blue-700 mb-4">
               תוצאות המבחן
             </h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-blue-600">
               סיכום ביצועים מפורט
             </p>
           </div>

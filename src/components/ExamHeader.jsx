@@ -30,11 +30,9 @@ const ExamHeader = ({ userInfo, timer, currentQuestion, totalQuestions, answered
             <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-6 border border-primary/20">
               <h1 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center">
                 <Award className="h-6 w-6 mr-2 text-primary" />
-                מערכת מבחן טכני מקצועית
+                מבחן טכני - קבוצת דיגיטל
               </h1>
-              <p className="text-base text-gray-600 font-medium">
-                Full Stack Senior Developer
-              </p>
+         
             </div>
           </div>
 
@@ -93,7 +91,7 @@ const ExamHeader = ({ userInfo, timer, currentQuestion, totalQuestions, answered
         <div className="pb-6">
           <div className="flex items-center justify-between bg-gray-50 rounded-xl p-4 border border-gray-200">
             <div className="text-base font-semibold text-gray-900">
-              שאלה {currentQuestion + 1} מתוך {totalQuestions}
+              שאלה {typeof currentQuestion === 'number' ? currentQuestion + 1 : ''} מתוך {totalQuestions}
             </div>
             <div className="text-base font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
               {currentQuestion && currentQuestion.categoryTitle}

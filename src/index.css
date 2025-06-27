@@ -8,7 +8,7 @@
 body {
   direction: rtl;
   font-family: 'Heebo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #f7fafc;
   min-height: 100vh;
   color: #2d3748;
   line-height: 1.6;
@@ -1044,4 +1044,8 @@ code {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-dark);
+}
+
+.app-bg {
+  background: linear-gradient(120deg, #e0f2fe 0%, #f7fafc 100%);
 }

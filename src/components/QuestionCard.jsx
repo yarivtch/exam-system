@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, Circle, Code, AlertCircle } from 'lucide-react';
+import { CheckCircle, Circle, AlertCircle } from 'lucide-react';
 
 const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
   const [textAnswer, setTextAnswer] = useState(currentAnswer || '');
@@ -11,14 +11,6 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
   const handleTextAnswer = (value) => {
     setTextAnswer(value);
     onAnswer(question.id, value);
-  };
-
-  const renderCodeBlock = (code) => {
-    return (
-      <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 p-6 rounded-xl font-mono text-sm overflow-x-auto my-4 shadow-xl border border-gray-700">
-        <pre className="whitespace-pre-wrap">{code}</pre>
-      </div>
-    );
   };
 
   const renderMultipleChoice = () => (
@@ -48,25 +40,15 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
 
   const renderTextInput = () => (
     <div className="space-y-6">
-      {question.hasCode && (
-        <div className="bg-gradient-to-r from-blue-50 to-accent/10 border border-blue-200 rounded-xl p-6 shadow-md">
-          <div className="flex items-center space-x-3 space-x-reverse mb-4">
-            <Code className="h-5 w-5 text-primary" />
-            <span className="text-base font-semibold text-primary-dark">דוגמת קוד</span>
-          </div>
-          {renderCodeBlock(question.placeholder)}
-        </div>
-      )}
-      
       <div>
         <label htmlFor="textAnswer" className="block text-base font-semibold text-gray-700 mb-3">
-          תשובתך:
+          התשובה שלך:
         </label>
         <textarea
           id="textAnswer"
           value={textAnswer}
           onChange={(e) => handleTextAnswer(e.target.value)}
-          placeholder={question.placeholder || "הכנס את תשובתך כאן..."}
+          placeholder=""
           className="w-full h-40 p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary resize-none transition-all duration-300"
         />
       </div>
@@ -114,10 +96,9 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
             </span>
           </div>
           <div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-            {question.type === 'multiple' ? 'בחירה מרובה' : 'תשובה חופשית'}
+            {question.type === 'multiple' ? 'בחירה מרובה' : 'שאלה פתוחה'}
           </div>
         </div>
-        
         <h2 className="text-2xl font-bold text-gray-900 leading-relaxed">
           {question.question}
         </h2>
@@ -134,11 +115,11 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
           <div className="flex items-start space-x-3 space-x-reverse">
             <AlertCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
             <div className="text-base text-primary-dark">
-              <p className="font-semibold mb-2">טיפים לתשובה:</p>
+              <p className="font-semibold mb-2">טיפ קטן:</p>
               <ul className="list-disc list-inside space-y-2 text-sm">
-                <li>השתמש בקוד ברור ומאורגן</li>
-                <li>הסבר את הלוגיקה שלך</li>
-                <li>כתוב תשובה מפורטת ומקצועית</li>
+                <li>תשובה ברורה, קצרה וממוקדת תמיד מנצחת</li>
+                <li>אם צריך – אפשר להוסיף דוגמת קוד משלך</li>
+                <li>אל תשכח/י להסביר את הלוגיקה שלך</li>
               </ul>
             </div>
           </div>
