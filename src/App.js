@@ -96,6 +96,7 @@ function App() {
       <ExamHeader
         userInfo={userInfo}
         timer={timer}
+        currentQuestionIndex={currentQuestionIndex}
         currentQuestion={currentQuestion}
         totalQuestions={allQuestions.length}
         answeredQuestions={answeredQuestions}
