@@ -40,10 +40,10 @@ const Navigation = ({
         `}
         style={{ minWidth: 48 }}
       >
-        {isAnswered ? (
-          <CheckCircle className="h-6 w-6 text-primary" />
-        ) : (
+        {(isCurrent || !isAnswered) ? (
           <span>{index + 1}</span>
+        ) : (
+          <CheckCircle className="h-6 w-6 text-primary" />
         )}
       </button>
     );

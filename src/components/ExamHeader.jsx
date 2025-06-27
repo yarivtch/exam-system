@@ -1,7 +1,7 @@
 import React from 'react';
 import { Clock, User, BookOpen, Target, Award } from 'lucide-react';
 
-const ExamHeader = ({ userInfo, timer, currentQuestion, totalQuestions, answeredQuestions }) => {
+const ExamHeader = ({ userInfo, timer, currentQuestionIndex, totalQuestions, answeredQuestions }) => {
   const progressPercentage = Math.round((answeredQuestions / totalQuestions) * 100);
   
   return (
@@ -91,10 +91,15 @@ const ExamHeader = ({ userInfo, timer, currentQuestion, totalQuestions, answered
         <div className="pb-6">
           <div className="flex items-center justify-between bg-gray-50 rounded-xl p-4 border border-gray-200">
             <div className="text-base font-semibold text-gray-900">
-              שאלה {typeof currentQuestion === 'number' ? currentQuestion + 1 : ''} מתוך {totalQuestions}
+              שאלה {(typeof currentQuestionIndex === 'number' && !isNaN(currentQuestionIndex) ? currentQuestionIndex + 1 : 1)} מתוך {totalQuestions}
             </div>
             <div className="text-base font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-              {currentQuestion && currentQuestion.categoryTitle}
+              {/* Assuming currentQuestion is available in the props */}
+              {currentQuestionIndex !== null && currentQuestionIndex !== undefined && currentQuestionIndex >= 0 && currentQuestionIndex < totalQuestions ? (
+                currentQuestionIndex.categoryTitle
+              ) : (
+                'No category title available'
+              )}
             </div>
           </div>
         </div>
