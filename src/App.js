@@ -3,10 +3,7 @@ import { useTimer } from './hooks/useTimer';
 import { useExamState } from './hooks/useExamState';
 import { useCSVExport } from './hooks/useCSVExport';
 import LoginForm from './components/LoginForm';
-import ExamHeader from './components/ExamHeader';
-import QuestionCard from './components/QuestionCard';
-import CategorySteps from './components/CategorySteps';
-import Navigation from './components/Navigation';
+import SimpleLayout from './components/SimpleLayout';
 import ResultsPage from './components/ResultsPage';
 
 function App() {
@@ -92,51 +89,22 @@ function App() {
   const answeredQuestions = getAnsweredQuestions();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 flex flex-col">
-      {/* כותרת המבחן */}
-      <ExamHeader
-        userInfo={userInfo}
-        timer={timer}
-        currentQuestionIndex={currentQuestionIndex}
-        currentQuestion={currentQuestion}
-        totalQuestions={allQuestions.length}
-        answeredQuestions={answeredQuestions}
-      />
-
-      {/* קטגוריות בחלק העליון */}
-      <CategorySteps
-        allQuestions={allQuestions}
-        currentQuestionIndex={currentQuestionIndex}
-        onGoToQuestion={goToQuestion}
-        answers={answers}
-        isQuestionAnswered={(questionId) => isQuestionAnswered(questionId)}
-      />
-
-      {/* תוכן המבחן - שאלה במרכז */}
-      <div className="flex-1 max-w-5xl mx-auto w-full px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <div className="flex justify-center">
-          {currentQuestion && (
-            <QuestionCard
-              question={currentQuestion}
-              onAnswer={handleAnswerQuestion}
-              currentAnswer={answers[currentQuestion.id]}
-            />
-          )}
-        </div>
-      </div>
-      
-      {/* ניווט בתחתית */}
-      <Navigation
-        currentQuestionIndex={currentQuestionIndex}
-        totalQuestions={allQuestions.length}
-        onNext={nextQuestion}
-        onPrev={prevQuestion}
-        onGoToQuestion={goToQuestion}
-        onCompleteExam={handleCompleteExam}
-        answeredQuestions={answeredQuestions}
-        isQuestionAnswered={(index) => isQuestionAnswered(allQuestions[index]?.id)}
-      />
-    </div>
+    <SimpleLayout
+      userInfo={userInfo}
+      timer={timer}
+      allQuestions={allQuestions}
+      currentQuestionIndex={currentQuestionIndex}
+      currentQuestion={currentQuestion}
+      totalQuestions={allQuestions.length}
+      answeredQuestions={answeredQuestions}
+      answers={answers}
+      onAnswer={handleAnswerQuestion}
+      onNext={nextQuestion}
+      onPrev={prevQuestion}
+      onGoToQuestion={goToQuestion}
+      onCompleteExam={handleCompleteExam}
+      isQuestionAnswered={(questionId) => isQuestionAnswered(questionId)}
+    />
   );
 }
 
