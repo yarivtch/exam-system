@@ -82,7 +82,7 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
   };
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-4 sm:p-6 w-full max-w-3xl border border-gray-100">
+    <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-4 sm:p-6 w-full max-w-4xl border border-gray-100">
       {/* כותרת השאלה */}
       <div className="mb-4 sm:mb-6">
         <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 mb-3 sm:mb-4">
@@ -99,7 +99,7 @@ const QuestionCard = ({ question, onAnswer, currentAnswer }) => {
             {question.type === 'multiple' ? 'בחירה מרובה' : 'שאלה פתוחה'}
           </div>
         </div>
-        <h2 className="text-base sm:text-lg font-bold text-gray-900 leading-relaxed text-center sm:text-right">
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 leading-relaxed text-center sm:text-right">
           {question.question}
         </h2>
       </div>

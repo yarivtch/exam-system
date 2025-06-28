@@ -5,6 +5,7 @@ import { useCSVExport } from './hooks/useCSVExport';
 import LoginForm from './components/LoginForm';
 import ExamHeader from './components/ExamHeader';
 import QuestionCard from './components/QuestionCard';
+import CategorySteps from './components/CategorySteps';
 import Navigation from './components/Navigation';
 import ResultsPage from './components/ResultsPage';
 
@@ -91,7 +92,7 @@ function App() {
   const answeredQuestions = getAnsweredQuestions();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 flex flex-col">
       {/* כותרת המבחן */}
       <ExamHeader
         userInfo={userInfo}
@@ -102,8 +103,17 @@ function App() {
         answeredQuestions={answeredQuestions}
       />
 
-      {/* תוכן המבחן */}
-      <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+      {/* קטגוריות בחלק העליון */}
+      <CategorySteps
+        allQuestions={allQuestions}
+        currentQuestionIndex={currentQuestionIndex}
+        onGoToQuestion={goToQuestion}
+        answers={answers}
+        isQuestionAnswered={(questionId) => isQuestionAnswered(questionId)}
+      />
+
+      {/* תוכן המבחן - שאלה במרכז */}
+      <div className="flex-1 max-w-5xl mx-auto w-full px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
         <div className="flex justify-center">
           {currentQuestion && (
             <QuestionCard
@@ -114,8 +124,8 @@ function App() {
           )}
         </div>
       </div>
-
-      {/* ניווט */}
+      
+      {/* ניווט בתחתית */}
       <Navigation
         currentQuestionIndex={currentQuestionIndex}
         totalQuestions={allQuestions.length}

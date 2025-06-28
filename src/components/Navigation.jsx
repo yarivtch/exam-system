@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, CheckCircle, Circle, Flag, AlertTriangle, Map, Clock } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Flag, AlertTriangle, Clock } from 'lucide-react';
 
 const Navigation = ({ 
   currentQuestionIndex, 
@@ -26,60 +26,11 @@ const Navigation = ({
     setShowConfirmComplete(false);
   };
 
-  const renderQuestionIndicator = (index) => {
-    const isAnswered = isQuestionAnswered(index);
-    const isCurrent = index === currentQuestionIndex;
-    return (
-      <button
-        key={index}
-        onClick={() => onGoToQuestion(index)}
-        className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold transition-all duration-300 card-hover shadow-md border-2 mx-1 my-1
-          ${isCurrent ? 'bg-primary text-white border-primary scale-110 shadow-xl' :
-            isAnswered ? 'bg-blue-50 text-primary border-primary/60' :
-            'bg-white text-gray-700 border-blue-100 hover:bg-blue-50'}
-        `}
-        style={{ minWidth: 40 }}
-      >
-        {(isCurrent || !isAnswered) ? (
-          <span>{index + 1}</span>
-        ) : (
-          <CheckCircle className="h-4 w-4 text-primary" />
-        )}
-      </button>
-    );
-  };
 
   return (
     <div className="bg-white/95 backdrop-blur-sm shadow-lg border-t border-gray-200">
       <div className="max-w-5xl mx-auto px-6 py-4">
-        {/* אינדיקטורים לשאלות */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-base font-bold text-gray-900 flex items-center">
-              <Map className="h-4 w-4 mr-2 text-primary" />
-              מפת שאלות
-            </h3>
-            <div className="flex items-center space-x-3 space-x-reverse text-xs text-gray-600">
-              <div className="flex items-center space-x-1 space-x-reverse bg-success/10 px-2 py-1 rounded-full">
-                <CheckCircle className="h-3 w-3 text-success" />
-                <span className="font-medium">נענה</span>
-              </div>
-              <div className="flex items-center space-x-1 space-x-reverse bg-gray-100 px-2 py-1 rounded-full">
-                <Circle className="h-3 w-3 text-gray-400" />
-                <span className="font-medium">לא נענה</span>
-              </div>
-            </div>
-          </div>
-          <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-blue-50 rounded-xl py-2 shadow-sm" style={{ background: 'linear-gradient(90deg, #e0f2fe 0%, #f7fafc 100%)' }}>
-            <div className="flex flex-nowrap gap-2 justify-center min-w-fit px-4">
-              {Array.from({ length: totalQuestions }, (_, index) => 
-                renderQuestionIndicator(index)
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* כפתורי ניווט */}
+        {/* כפתורי ניווט בסיסיים */}
         <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
           <div className="flex items-center justify-center space-x-4 space-x-reverse">
             <button
